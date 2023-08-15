@@ -160,19 +160,66 @@ function testQuadrant(x, y) {
     quadrant = "in quadrant 3";
   } else if (x > 0 && y < 0) {
     quadrant = "in quadrant 4";
-} else if  (x == 0 && y != 0) {
-  quadrant = " on x axis";
-} else if (x != 0 && y == 0) {
-  quadrant = "on y axis";
-} else {
-  quadrant = "at origin (zero)";
-}
+  } else if (x == 0 && y != 0) {
+    quadrant = " on x axis";
+  } else if (x != 0 && y == 0) {
+    quadrant = "on y axis";
+  } else {
+    quadrant = "at origin (zero)";
+  }
 
-console.log(`point (${x},${y}) is ${quadrant}.`);
-
+  console.log(`point (${x},${y}) is ${quadrant}.`);
 }
 
 testQuadrant(0, 0);
 testQuadrant(4, 20);
 testQuadrant(-127, -974);
 
+// Exercise 4 Section
+console.log("EXERCISE 4:\n==========\n");
+
+function checkTriangle(a, b, c) {
+  if (a < b + c && b < a + c && c < a + b) {
+    if (a == b && a == c) {
+      return `Sides ${a}, ${b}, ${c} make a valid Equilateral triangle.`;
+    } else if (a == b || a == c || b == c) {
+      return `Sides ${a}, ${b}, ${c} make a valid Isociles triangle.`;
+    } else {
+      return `Sides ${a}, ${b}, ${c} make a valid Scalene triangle.`;
+    }
+  } else {
+    return `Sides ${a}, ${b}, ${c} do not make a valid triangle.`;
+  }
+}
+console.log(checkTriangle(12, 12, 45));
+console.log(checkTriangle(40, 12, 45));
+console.log(checkTriangle(12, 12, 12));
+console.log(checkTriangle(12, 12, 3));
+
+// Exercise 5 Section
+console.log("EXERCISE 5:\n==========\n");
+
+let planLimit = 100;
+let day = 15;
+let usage = 30;
+
+console.log(dataInfo(planLimit, day, usage));
+
+function dataInfo(planLimit, day, usage) {
+let daysRemaining = 30-day;
+let estimatedDailyAvg = planLimit/30;
+let actualDailyAvg = usage/day;
+let estimatedOverage = usage/day*30-planLimit;
+let dataRemaining = planLimit-usage;
+
+if (estimatedOverage > 0) {
+  return `${day} days used, ${daysRemaining} days remaining. 
+  Average daily use: ${Math.round(actualDailyAvg * 100) / 100} GB/day. 
+  You are EXCEEDING your estimated daily use (${Math.round(estimatedDailyAvg * 100) / 100} GB), continuing this high usage, you'll exceed your data plan by ${Math.round(estimatedOverage * 100) / 100} GB. 
+  To stay below your data plan, use no more than ${(Math.round(dataRemaining * 100) / 100)/daysRemaining} GB/day.`
+} else {
+  return `${day} days used, ${daysRemaining} days remaining. 
+  Average daily use: ${Math.round(actualDailyAvg * 100) / 100} GB/day. 
+  You are UNDER your maximum estimated daily use (${Math.round(estimatedDailyAvg * 100) / 100} GB), continuing this usage, you are on track to your end this data period ${Math.abs(Math.round(estimatedOverage * 100) / 100)} GB under your plan limit.`
+}
+}
