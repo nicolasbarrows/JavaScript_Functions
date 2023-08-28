@@ -17,6 +17,8 @@ console.log("EXERCISE 1:\n==========\n");
 // printOdds(10);
 // printOdds(-10);
 
+let input = prompt("pick a number for Exercise 1.");
+
 function printOdds(count) {
   if (count > 0) {
     for (let i = 1; i <= count; i++) {
@@ -25,9 +27,9 @@ function printOdds(count) {
       }
     }
   } else if (count < 0) {
-    for (let i = 1; i <= count; i--) {
+    for (let i = -1; i >= count; i--) {
       if (i % 2 !== 0) {
-        console.log(i * -1);
+        console.log(i);
       }
     }
   } else {
@@ -35,8 +37,7 @@ function printOdds(count) {
   }
 }
 
-printOdds(10);
-printOdds(-10);
+printOdds(input);
 
 // Exercise 2 Section
 console.log("EXERCISE 2:\n==========\n");
@@ -83,7 +84,7 @@ function checkLicence(name, age) {
     );
   } else {
     console.log(
-      `$(name) is too young. try again in at least ${15 - age} years.`
+      `${name} is too young. try again in at least ${15 - age} years.`
     );
   }
 }
